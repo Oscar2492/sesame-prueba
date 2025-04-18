@@ -1,23 +1,44 @@
 <script setup lang="ts">
-import { RouterLink, RouterView } from 'vue-router'
-import HelloWorld from './components/HelloWorld.vue'
+import { useVacancyStore } from './stores/vacancy.ts'
+import { computed, onMounted } from 'vue'
+
+const vacancyStore = useVacancyStore()
+
+onMounted(() => {
+  vacancyStore.setVacancyStatus()
+  vacancyStore.setVacancyCandidates()
+})
+
+const vacancyStatus = computed(() => vacancyStore.vacancyStatus)
+const vacancyCandidates = computed(() => vacancyStore.vacancyCandidates)
+const addNewCandidate = vacancyStore.addCandidates
 </script>
 
 <template>
-  <header>
-    <img alt="Vue logo" class="logo" src="@/assets/logo.svg" width="125" height="125" />
-
-    <div class="wrapper">
-      <HelloWorld msg="You did it!" />
-
-      <nav>
-        <RouterLink to="/">Home</RouterLink>
-        <RouterLink to="/about">About</RouterLink>
-      </nav>
+  <div>
+    <div>
+      <h2>VACANTES</h2>
+      <pre>{{ vacancyStatus }}</pre>
     </div>
-  </header>
-
-  <RouterView />
+    <div>
+      <h2>Candidatos</h2>
+      <pre>{{ vacancyCandidates }}</pre>
+    </div>
+    <div>
+      <button
+        @click="
+          addNewCandidate({
+            firstName: 'Oscar',
+            lastName: 'Roza',
+            vacancyId: '00cf9726-17c6-4178-aa9c-bb1c6e86c267',
+            statusId: '2d7d0346-921b-4944-ad8a-017e27062754',
+          })
+        "
+      >
+        AÑADIR Candidatos
+      </button>
+    </div>
+  </div>
 </template>
 
 <style scoped>
