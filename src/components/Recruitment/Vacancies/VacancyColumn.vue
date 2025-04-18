@@ -3,7 +3,7 @@ import type { VacancyStatus } from '@/Types'
 import CandidatesCard from '@/components/Recruitment/Candidates/CandidatesCard.vue'
 import { computed } from 'vue'
 
-defineProps<{
+const props = defineProps<{
   column: VacancyStatus
 }>()
 const background = computed(() => 'bg-neutral')
@@ -17,7 +17,7 @@ const background = computed(() => 'bg-neutral')
     <div class="bg-gray color-gray-800">
       <h2>{{ column.name }}</h2>
     </div>
-    <candidates-card />
+    <candidates-card :vacancy="props.column" />
   </div>
 </template>
 
