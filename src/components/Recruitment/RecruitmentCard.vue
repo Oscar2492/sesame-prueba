@@ -6,9 +6,9 @@ import VacancyColumns from '@/components/Recruitment/Vacancies/VacancyColumns.vu
 </script>
 
 <template>
-  <div class="w-5xl">
+  <div class="w-5xl border border-gray-200 rounded-md p-4">
     <recruitment-header />
-    <div>
+    <div class="flex items-center justify-between">
       <candidates-search />
       <candidates-add />
     </div>

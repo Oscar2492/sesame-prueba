@@ -9,7 +9,7 @@ import type { Candidate, VacancyStatus } from '@/Types'
 
 export const useVacancyStore = defineStore('vacancy', () => {
   const vacancyId: string = '00cf9726-17c6-4178-aa9c-bb1c6e86c267'
-
+  const statusNewId = 'cc93e42e-6551-47cf-b30e-3e5797406f01'
   const isLoading = ref(false)
   const vacancyStatus = ref<VacancyStatus[]>([])
   const vacancyCandidates = ref<Candidate[]>([])
@@ -43,8 +43,9 @@ export const useVacancyStore = defineStore('vacancy', () => {
     try {
       const response = await addNewCandidates(candidate)
       vacancyCandidates.value = response.data
+      await setVacancyCandidates()
     } catch (error) {
-      console.error('Error al obtener los candidatos de la vacante :', error)
+      console.error('Error al agregar el candidato:', error)
     } finally {
       isLoading.value = false
     }
@@ -57,5 +58,7 @@ export const useVacancyStore = defineStore('vacancy', () => {
     vacancyStatus,
     isLoading,
     vacancyCandidates,
+    statusNewId,
+    vacancyId,
   }
 })

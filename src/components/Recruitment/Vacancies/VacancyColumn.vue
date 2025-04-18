@@ -17,7 +17,7 @@ const vacancyCandidates = computed(() => vacancyStore.vacancyCandidates)
 
 const vacancyCandidatesfilter = computed(() => {
   return vacancyCandidates.value.filter((candidate: Candidate) => {
-    return candidate.status.id === props.column.id
+    return candidate.status?.id === props.column.id
   })
 })
 
@@ -36,7 +36,7 @@ const icon = computed(() => iconsMap[props.img])
 
 <template>
   <div
-    class="w-[296px] h-40 bg-neutral border border-gray-200 rounded-md text-center p-4"
+    class="w-[296px] bg-neutral border border-gray-200 rounded-md text-center p-4"
     :class="background"
   >
     <div class="w-[100%] h-1 rounded mb-1" :class="`bg-${props.img}`" />

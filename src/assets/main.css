@@ -6,6 +6,7 @@
   --color-interview: #14B8A6;
   --color-hired: #3B82F6;
   --color-ban: #ED6F6F;
+  --color-button: #1F2D52;
 }
 .border-new {
   border-color: var(--color-new);
