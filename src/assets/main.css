@@ -1,5 +1,40 @@
 @import "tailwindcss";
 
 @theme {
-  --color-neutral: #E2E8F0
+  --color-neutral: #E2E8F0;
+  --color-new: #22C55E;
+  --color-interview: #14B8A6;
+  --color-hired: #3B82F6;
+  --color-ban: #ED6F6F;
+}
+.border-new {
+  border-color: var(--color-new);
+}
+
+.border-interview {
+  border-color: var(--color-interview);
+}
+
+.border-hired {
+  border-color: var(--color-hired);
+}
+
+.border-ban {
+  border-color: var(--color-ban);
+}
+
+.bg-new {
+  background-color: var(--color-new);
+}
+
+.bg-interview {
+  background-color: var(--color-interview);
+}
+
+.bg-hired {
+  background-color: var(--color-hired);
+}
+
+.bg-ban {
+  background-color: var(--color-ban);
 }

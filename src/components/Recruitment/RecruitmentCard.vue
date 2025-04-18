@@ -15,5 +15,3 @@ import VacancyColumns from '@/components/Recruitment/Vacancies/VacancyColumns.vu
     <vacancy-columns />
   </div>
 </template>
-
-<style scoped></style>
