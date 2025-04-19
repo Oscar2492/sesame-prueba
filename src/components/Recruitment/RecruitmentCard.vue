@@ -16,7 +16,9 @@ const isVacancySelected = computed(() => selectedTab.value === 'vacancy')
 </script>
 
 <template>
-  <div class="flex flex-col flex-1 border border-gray-200 rounded-md p-4 bg-white min-h-[85vh]">
+  <div
+    class="flex flex-col flex-1 border border-gray-200 rounded-md p-4 bg-white min-h-[45.125rem]"
+  >
     <recruitment-header v-model:selectedTab="selectedTab" />
     <div class="flex items-center justify-between my-4 flex-wrap gap-4">
       <sesame-input placeholder="Buscar" v-model="filterCandidate" height="s" width="l" />

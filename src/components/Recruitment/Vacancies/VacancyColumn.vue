@@ -56,7 +56,7 @@ const allowDrop = (event: DragEvent) => {
 
 <template>
   <div
-    class="min-w-[18.5em] bg-neutral-background border border-gray-200 rounded-md text-center p-4 overflow-y-auto overflow-x-hidden scroll-custom"
+    class="min-w-[18.5rem] bg-neutral-background border border-gray-200 rounded-md text-center p-4 overflow-y-auto overflow-x-hidden scroll-custom"
     :class="background"
     @dragover="allowDrop"
     @drop="onDrop"
