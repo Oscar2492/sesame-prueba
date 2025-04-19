@@ -31,18 +31,39 @@ const iconsMap: Record<string, string> = {
 }
 
 const icon = computed(() => iconsMap[props.img])
+
+const onDrop = (event: DragEvent) => {
+  event.preventDefault()
+  const candidateData = event.dataTransfer?.getData('candidate')
+  if (candidateData) {
+    const candidate = JSON.parse(candidateData)
+    candidatesStore.updateCandidate({
+      id: candidate.id,
+      firstName: candidate.firstName,
+      lastName: candidate.lastName,
+      vacancyId: candidate.vacancyId,
+      statusId: props.column.id,
+    })
+  }
+}
+
+const allowDrop = (event: DragEvent) => {
+  event.preventDefault()
+}
 </script>
 
 <template>
   <div
     class="w-[296px] bg-neutral border border-gray-200 rounded-md text-center p-4"
     :class="background"
+    @dragover="allowDrop"
+    @drop="onDrop"
   >
-    <div class="w-[100%] h-1 rounded mb-1" :class="`bg-${props.img}`" />
-    <div class="flex items-center justify-items-start gap-2 bg-gray text-gray-800 p-2 text-center">
+    <div class="w-full h-1 rounded mb-1" :class="`bg-${props.img}`" />
+    <div class="flex items-center gap-2 bg-gray text-gray-800 p-2 text-center">
       <img :src="icon" class="w-5 h-5" />
       <h2 class="text-base font-medium">{{ column.name }}</h2>
     </div>
-    <candidates-card :candidates="Candidatesfilter" />
+    <CandidatesCard :candidates="Candidatesfilter" />
   </div>
 </template>
