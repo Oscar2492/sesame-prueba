@@ -5,7 +5,7 @@ export const getVacancyStatus = async (vacancyId: string) => {
   const { request } = useApi()
   return await request(`/recruitment/v1/candidate-status/${vacancyId}`, { method: 'GET' })
 }
-export const getVacancyCandidates = async (vacancyId: string) => {
+export const getCandidates = async (vacancyId: string) => {
   const { request } = useApi()
   return await request(`/recruitment/v1/vacancies/${vacancyId}/candidates`, { method: 'GET' })
 }

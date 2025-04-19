@@ -1,16 +1,18 @@
 <script setup lang="ts">
 import { useVacancyStore } from './stores/vacancy.ts'
 import { onMounted } from 'vue'
+import { useCandidatesStore } from '@/stores/candidates.ts'
 
 const vacancyStore = useVacancyStore()
+const candidatesStore = useCandidatesStore()
 
 onMounted(() => {
   vacancyStore.setVacancyStatus()
-  vacancyStore.setVacancyCandidates()
+  candidatesStore.setCandidates()
 })
 //
 // const vacancyStatus = computed(() => vacancyStore.vacancyStatus)
-// const addNewCandidate = vacancyStore.addCandidates
+// const addNewCandidate = candidatesStore.addCandidates
 </script>
 
 <template>
@@ -22,7 +24,7 @@ onMounted(() => {
   <!--    </div>-->
   <!--    <div>-->
   <!--      <h2>Candidatos</h2>-->
-  <!--      <pre>{{ vacancyCandidates }}</pre>-->
+  <!--      <pre>{{ candidates }}</pre>-->
   <!--    </div>-->
   <!--    <div>-->
   <!--      <button-->
