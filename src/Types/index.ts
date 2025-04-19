@@ -13,5 +13,5 @@ export interface Candidate {
   lastName: string
   vacancyId: string
   statusId: string
-  status: VacancyStatus
+  status?: VacancyStatus
 }
