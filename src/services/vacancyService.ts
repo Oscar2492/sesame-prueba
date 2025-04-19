@@ -17,3 +17,10 @@ export const addNewCandidates = async (candidate: Candidate) => {
     body: JSON.stringify(candidate),
   })
 }
+export const updateCandidates = async (candidate: Candidate) => {
+  const { request } = useApi()
+  return await request(`/recruitment/v1/candidates/${candidate.id}`, {
+    method: 'PUT',
+    body: JSON.stringify(candidate),
+  })
+}
