@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import SesameButton from '@/components/shared/sesame-button.vue'
+import SesameButton from '@/components/shared/atoms/sesame-button.vue'
 import { useVacancyStore } from '@/stores/vacancy.ts'
 
 const emit = defineEmits<{

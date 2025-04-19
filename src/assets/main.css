@@ -2,12 +2,18 @@
 
 @theme {
   --color-neutral: #E2E8F0;
+  --color-input: #F8FAFC;
+  --color-input-text: #94A3B8;
   --color-new: #22C55E;
   --color-interview: #14B8A6;
   --color-hired: #3B82F6;
   --color-ban: #ED6F6F;
   --color-button: #1F2D52;
 }
+.border-neutral {
+  border-color: var(--color-neutral);
+}
+
 .border-new {
   border-color: var(--color-new);
 }

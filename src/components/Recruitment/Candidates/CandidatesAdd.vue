@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import SesameButton from '@/components/shared/sesame-button.vue'
+import SesameButton from '@/components/shared/atoms/sesame-button.vue'
 import { ref } from 'vue'
 import CandidateAddForm from '@/components/Recruitment/Candidates/CandidateAddForm.vue'
 import FadeTransition from '@/components/shared/fade-transition.vue'
