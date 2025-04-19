@@ -17,10 +17,9 @@ const candidatesStore = useCandidatesStore()
 const candidates = computed(() => candidatesStore.filteredCandidates)
 
 const Candidatesfilter = computed(() => {
-  const list = candidates.value
-  return Array.isArray(list)
-    ? list.filter((candidate: Candidate) => candidate.status?.id === props.column.id)
-    : []
+  return candidates.value.filter((candidate: Candidate) => {
+    return candidate.status?.id === props.column.id
+  })
 })
 
 const background = computed(() => (Candidatesfilter.value.length ? 'bg-white' : 'bg-neutral'))
