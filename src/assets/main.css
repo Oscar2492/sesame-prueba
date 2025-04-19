@@ -2,6 +2,7 @@
 
 @theme {
   --color-neutral: #E2E8F0;
+  --color-neutral-background: #F8FAFC;
   --color-input: #F8FAFC;
   --color-input-text: #94A3B8;
   --color-new: #22C55E;
@@ -9,7 +10,14 @@
   --color-hired: #3B82F6;
   --color-ban: #ED6F6F;
   --color-button: #1F2D52;
+  --color-header: #6C63FF;
 }
+
+body {
+  font-family: 'Figtree', sans-serif;
+  background-color: var(--color-neutral-background);
+}
+
 .border-neutral {
   border-color: var(--color-neutral);
 }
@@ -45,3 +53,20 @@
 .bg-ban {
   background-color: var(--color-ban);
 }
+
+.scroll-custom::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+.scroll-custom::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.scroll-custom::-webkit-scrollbar-thumb {
+  background-color: var(--color-neutral-background);
+  border-radius: 6px;
+  border: none;
+  margin: 4px;
+}
+

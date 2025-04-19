@@ -22,7 +22,9 @@ const Candidatesfilter = computed(() => {
   })
 })
 
-const background = computed(() => (Candidatesfilter.value.length ? 'bg-white' : 'bg-neutral'))
+const background = computed(() =>
+  Candidatesfilter.value.length ? 'bg-white' : 'bg-neutral-background',
+)
 const iconsMap: Record<string, string> = {
   new: iconNew,
   interview: iconInterview,
@@ -54,14 +56,14 @@ const allowDrop = (event: DragEvent) => {
 
 <template>
   <div
-    class="w-[296px] bg-neutral border border-gray-200 rounded-md text-center p-4"
+    class="min-w-[18.5em] bg-neutral-background border border-gray-200 rounded-md text-center p-4 overflow-y-auto overflow-x-hidden scroll-custom"
     :class="background"
     @dragover="allowDrop"
     @drop="onDrop"
   >
     <div class="w-full h-1 rounded mb-1" :class="`bg-${props.img}`" />
     <div class="flex items-center gap-2 bg-gray text-gray-800 p-2 text-center">
-      <img :src="icon" class="w-5 h-5" />
+      <img :src="icon" class="w-5 h-5" alt="" />
       <h2 class="text-base font-medium">{{ column.name }}</h2>
     </div>
     <CandidatesCard :candidates="Candidatesfilter" />
