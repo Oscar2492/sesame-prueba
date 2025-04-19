@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import { addNewCandidates, getCandidates } from '@/services/vacancyService.ts'
+import { addNewCandidates, getCandidates, updateCandidates } from '@/services/vacancyService.ts'
 import { computed, ref } from 'vue'
 import type { Candidate } from '@/Types'
 import { useVacancyStore } from '@/stores/vacancy.ts'
@@ -34,6 +34,22 @@ export const useCandidatesStore = defineStore('candidates', () => {
     }
   }
 
+  async function updateCandidate(candidate: Candidate) {
+    isLoading.value = true
+    try {
+      const response = await updateCandidates(candidate)
+      const updatedCandidate: Candidate = response.data
+
+      candidates.value = candidates.value.map((c) =>
+        c.id === updatedCandidate.id ? updatedCandidate : c,
+      )
+    } catch (error) {
+      console.error('Error al actualizar el candidato:', error)
+    } finally {
+      isLoading.value = false
+    }
+  }
+
   const filteredCandidates = computed(() =>
     candidates.value.filter((candidate) => {
       const fullName = `${candidate.firstName ?? ''} ${candidate.lastName ?? ''}`.toLowerCase()
@@ -50,9 +66,10 @@ export const useCandidatesStore = defineStore('candidates', () => {
   return {
     setCandidates,
     addCandidates,
+    setSearchTerm,
+    updateCandidate,
     isLoading,
     candidates,
     filteredCandidates,
-    setSearchTerm,
   }
 })

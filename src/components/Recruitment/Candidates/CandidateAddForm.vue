@@ -13,8 +13,6 @@ const firstName = ref('')
 const lastName = ref('')
 
 const submitForm = () => {
-  console.log('First Name:', firstName.value)
-  console.log('Last Name:', lastName.value)
   candidatesStore.addCandidates({
     firstName: firstName.value,
     lastName: lastName.value,
