@@ -2,18 +2,20 @@
 import { ref } from 'vue'
 import SesameButton from '@/components/shared/atoms/sesame-button.vue'
 import { useVacancyStore } from '@/stores/vacancy.ts'
+import { useCandidatesStore } from '@/stores/candidates.ts'
 
 const emit = defineEmits<{
   (event: 'close'): void
 }>()
 const vacancyStore = useVacancyStore()
+const candidatesStore = useCandidatesStore()
 const firstName = ref('')
 const lastName = ref('')
 
 const submitForm = () => {
   console.log('First Name:', firstName.value)
   console.log('Last Name:', lastName.value)
-  vacancyStore.addCandidates({
+  candidatesStore.addCandidates({
     firstName: firstName.value,
     lastName: lastName.value,
     vacancyId: vacancyStore.vacancyId,
