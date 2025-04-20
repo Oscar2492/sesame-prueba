@@ -12,7 +12,9 @@ const icons = ['new', 'interview', 'hired', 'ban']
 </script>
 
 <template>
-  <div class="flex justify-between gap-1.5 p-4 items-stretch">
+  <div
+    class="flex justify-between gap-1.5 items-stretch h-[37rem] p-4 overflow-x-auto scroll-custom"
+  >
     <vacancy-column
       v-for="(column, index) in vacancyStatus"
       :key="column.id"

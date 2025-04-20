@@ -31,7 +31,7 @@ const submitForm = () => {
         type="text"
         id="firstName"
         v-model="firstName"
-        class="mt-1 p-2 border border-gray-300 rounded-md w-full"
+        class="mt-1 w-full rounded-md border border-gray-300 p-2"
         placeholder="Enter first name"
         required
       />
@@ -43,14 +43,14 @@ const submitForm = () => {
         type="text"
         id="lastName"
         v-model="lastName"
-        class="mt-1 p-2 border border-gray-300 rounded-md w-full"
+        class="mt-1 w-full rounded-md border border-gray-300 p-2"
         placeholder="Enter last name"
         required
       />
     </div>
     <div class="flex items-center justify-around">
       <sesame-button label="Añadir" />
-      <sesame-button type="button" label="cancel" @click="$emit('close')" />
+      <sesame-button type="button" label="Cancel" @click="$emit('close')" />
     </div>
   </form>
 </template>

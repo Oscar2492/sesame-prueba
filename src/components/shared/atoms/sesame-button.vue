@@ -5,7 +5,7 @@ const props = defineProps<{
 </script>
 
 <template>
-  <button class="bg-button text-white py-2 px-3 rounded-xl cursor-pointer">
+  <button class="bg-primary text-white py-2 px-3 rounded-xl cursor-pointer">
     {{ props.label }}
   </button>
 </template>

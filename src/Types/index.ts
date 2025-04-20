@@ -15,4 +15,5 @@ export interface Candidate {
   vacancyId: string
   statusId: string
   status?: VacancyStatus
+  createdAt?: Date
 }
