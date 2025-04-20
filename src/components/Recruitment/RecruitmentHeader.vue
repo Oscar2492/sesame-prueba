@@ -16,14 +16,14 @@ function selectTab(tab: 'vacancy' | 'candidate') {
   <div class="flex items-center w-full gap-12 text-base font-bold border-b border-neutral">
     <div
       class="relative cursor-pointer pb-4"
-      :class="props.selectedTab === 'vacancy' ? 'text-header underline-tab' : 'text-neutral'"
+      :class="props.selectedTab === 'vacancy' ? 'text-font-purple underline-tab' : 'text-neutral'"
       @click="selectTab('vacancy')"
     >
       Vacantes
     </div>
     <div
       class="relative cursor-pointer pb-4"
-      :class="props.selectedTab === 'candidate' ? 'text-header underline-tab' : 'text-neutral'"
+      :class="props.selectedTab === 'candidate' ? 'text-font-purple underline-tab' : 'text-neutral'"
       @click="selectTab('candidate')"
     >
       Candidatos
