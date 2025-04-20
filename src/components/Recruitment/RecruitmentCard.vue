@@ -5,6 +5,7 @@ import VacancyColumns from '@/components/Recruitment/Vacancies/VacancyColumns.vu
 import { computed, ref, watch } from 'vue'
 import { useCandidatesStore } from '@/stores/candidates.ts'
 import SesameInput from '@/components/shared/atoms/sesame-input.vue'
+import CandidatesTable from '@/components/Recruitment/Candidates/CandidatesTable.vue'
 
 const candidateStore = useCandidatesStore()
 const filterCandidate = ref('')
@@ -26,5 +27,6 @@ const isVacancySelected = computed(() => selectedTab.value === 'vacancy')
     </div>
 
     <vacancy-columns v-if="isVacancySelected" class="flex-1" />
+    <candidates-table v-else />
   </div>
 </template>
