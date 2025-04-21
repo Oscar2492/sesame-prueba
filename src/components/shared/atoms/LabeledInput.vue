@@ -28,22 +28,22 @@ const sizeClasses = {
 const heightClass = computed(() => sizeClasses.height[props.height] || sizeClasses.height.m)
 const widthClass = computed(() => sizeClasses.width[props.width] || sizeClasses.width.m)
 
-const filterValue = ref(props.modelValue)
+const textValue = ref(props.modelValue)
 
 const handleInputChange = () => {
-  emit('update:modelValue', filterValue.value)
+  emit('update:modelValue', textValue.value)
 }
 </script>
 
 <template>
-  <div class="flex items-center gap-2 px-3 border rounded-xl bg-input border-neutral mt-1">
-    <img src="@/assets/icons/icon-search.svg" alt="Icono" class="w-4 h-4" />
+  <div class="bg-input border-neutral mt-1 flex items-center gap-2 rounded-xl border px-3">
+    <img src="@/assets/icons/icon-search.svg" alt="Icono" class="h-4 w-4" />
     <input
       type="text"
       :placeholder="placeholder"
-      v-model="filterValue"
+      v-model="textValue"
       @input="handleInputChange"
-      class="outline-none bg-transparent w-full py-2 text-input-text size-3.5"
+      class="text-input-text size-3.5 w-full bg-transparent py-2 outline-none"
       :class="[heightClass, widthClass]"
     />
   </div>

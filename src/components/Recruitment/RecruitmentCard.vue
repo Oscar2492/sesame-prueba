@@ -4,7 +4,7 @@ import CandidatesAdd from '@/components/Recruitment/Candidates/CandidatesAdd.vue
 import VacancyColumns from '@/components/Recruitment/Vacancies/VacancyColumns.vue'
 import { computed, ref, watch } from 'vue'
 import { useCandidatesStore } from '@/stores/candidates.ts'
-import SesameInput from '@/components/shared/atoms/sesame-input.vue'
+import LabeledInput from '@/components/shared/atoms/LabeledInput.vue'
 import CandidatesTable from '@/components/Recruitment/Candidates/CandidatesTable.vue'
 
 const candidateStore = useCandidatesStore()
@@ -22,7 +22,7 @@ const isVacancySelected = computed(() => selectedTab.value === 'vacancy')
   >
     <recruitment-header v-model:selectedTab="selectedTab" />
     <div class="my-4 flex flex-wrap items-center justify-between gap-4 px-4">
-      <sesame-input placeholder="Buscar" v-model="filterCandidate" height="s" width="l" />
+      <labeled-input placeholder="Buscar" v-model="filterCandidate" height="s" width="l" />
       <candidates-add />
     </div>
 

@@ -14,7 +14,7 @@ describe('Vacancy Store', () => {
     vi.clearAllMocks()
   })
 
-  it('Inicializa el estado correctamente', () => {
+  it('initializes state correctly', () => {
     const store = useVacancyStore()
     expect(store.isLoading).toBe(false)
     expect(store.vacancyId).toEqual('00cf9726-17c6-4178-aa9c-bb1c6e86c267')
@@ -22,7 +22,7 @@ describe('Vacancy Store', () => {
     expect(store.vacancyStatus).toEqual([])
   })
 
-  it('setVacancyStatus obtiene las vacantes', async () => {
+  it('setVacancyStatus fetches Vacancies', async () => {
     const mockVacancyStatus: VacancyStatus[] = [
       {
         id: 'stage-1',

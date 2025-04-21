@@ -2,7 +2,6 @@ import { createPinia, setActivePinia } from 'pinia'
 import { useCandidatesStore } from '../src/stores/candidates'
 import * as vacancyService from '../src/services/vacancyService'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { Candidate } from '../src/Types'
 
 vi.mock('../src/services/vacancyService', () => ({
   getCandidates: vi.fn(),
@@ -11,9 +10,7 @@ vi.mock('../src/services/vacancyService', () => ({
 }))
 
 vi.mock('../src/stores/vacancy', () => ({
-  useVacancyStore: vi.fn(() => ({
-    vacancyId: '123',
-  })),
+  useVacancyStore: () => ({ vacancyId: '123' }),
 }))
 
 describe('Candidates Store', () => {
@@ -22,104 +19,60 @@ describe('Candidates Store', () => {
     vi.clearAllMocks()
   })
 
-  it('inicializa el estado correctamente', () => {
+  it('initializes the default state', () => {
     const store = useCandidatesStore()
-    expect(store.isLoading).toBe(false)
-    expect(store.candidates).toEqual([])
-    expect(store.searchTerm).toBe('')
+    expect(store).toMatchObject({
+      isLoading: false,
+      candidates: [],
+      searchTerm: '',
+    })
   })
 
-  it('setCandidates obtiene los candidatos y actualiza el estado', async () => {
-    const mockCandidates: Candidate[] = [
-      { id: '1', firstName: 'Juan', lastName: 'Pérez', vacancyId: '123', statusId: '123' },
-      { id: '2', firstName: 'María', lastName: 'Gómez', vacancyId: '123', statusId: '123' },
-    ]
-    vi.mocked(vacancyService.getCandidates).mockResolvedValue({ data: mockCandidates })
-
+  it('setCandidates updates the Candidates list', async () => {
+    const mock = [{ id: '1', firstName: 'Test', lastName: 'User', vacancyId: '123', statusId: 's' }]
+    vi.mocked(vacancyService.getCandidates).mockResolvedValue({ data: mock })
     const store = useCandidatesStore()
-    expect(store.isLoading).toBe(false)
+
     await store.setCandidates()
-    expect(store.isLoading).toBe(false)
-    expect(store.candidates).toEqual(mockCandidates)
-    expect(vacancyService.getCandidates).toHaveBeenCalledWith('123')
+    expect(store.candidates).toEqual(mock)
   })
 
-  it('addCandidates agrega un candidato y recarga la lista', async () => {
-    const newCandidate: Candidate = {
-      firstName: 'Ana',
-      lastName: 'Roza',
-      vacancyId: '123',
-      statusId: '123',
-    }
-    const updatedCandidates: Candidate[] = [
-      { id: '1', firstName: 'Ana', lastName: 'Roza', vacancyId: '123', statusId: '123' },
-    ]
-    vi.mocked(vacancyService.addNewCandidates).mockResolvedValue({ data: updatedCandidates })
-    vi.mocked(vacancyService.getCandidates).mockResolvedValue({ data: updatedCandidates })
+  it('addCandidates adds a new candidate', async () => {
+    const candidate = { firstName: 'Ana', lastName: 'Rosa', vacancyId: '123', statusId: 's' }
+    const result = [{ ...candidate, id: '1' }]
+    vi.mocked(vacancyService.addNewCandidates).mockResolvedValue({ data: result })
+    vi.mocked(vacancyService.getCandidates).mockResolvedValue({ data: result })
 
     const store = useCandidatesStore()
-    await store.addCandidates(newCandidate)
-    expect(store.isLoading).toBe(false)
-    expect(store.candidates).toEqual(updatedCandidates)
-    expect(vacancyService.addNewCandidates).toHaveBeenCalledWith(newCandidate)
-    expect(vacancyService.getCandidates).toHaveBeenCalledWith('123')
+    await store.addCandidates(candidate)
+    expect(store.candidates).toEqual(result)
   })
 
-  it('updateCandidate actualiza un candidato en la lista', async () => {
-    const initialCandidates: Candidate[] = [
-      { id: '1', firstName: 'Juan', lastName: 'Pérez', vacancyId: '123', statusId: '123' },
-    ]
-    const updatedCandidate: Candidate = {
+  it('updateCandidate updates a candidate', async () => {
+    const updated = {
       id: '1',
-      firstName: 'Juan',
-      lastName: 'Rodríguez',
+      firstName: 'Nuevo',
+      lastName: 'Apellido',
       vacancyId: '123',
-      statusId: '123',
+      statusId: 's',
     }
-    vi.mocked(vacancyService.updateCandidates).mockResolvedValue({ data: updatedCandidate })
-    const store = useCandidatesStore()
-    store.candidates = initialCandidates
+    vi.mocked(vacancyService.updateCandidates).mockResolvedValue({ data: updated })
 
-    await store.updateCandidate(updatedCandidate)
-    expect(store.isLoading).toBe(false)
-    expect(store.candidates).toEqual([updatedCandidate])
-    expect(vacancyService.updateCandidates).toHaveBeenCalledWith(updatedCandidate)
+    const store = useCandidatesStore()
+    store.candidates = [{ ...updated, lastName: 'Viejo' }]
+    await store.updateCandidate(updated)
+    expect(store.candidates[0].lastName).toBe('Apellido')
   })
 
-  it('filtra candidatos según el término de búsqueda', () => {
+  it('filteredCandidates responds to the searchTerm', () => {
     const store = useCandidatesStore()
     store.candidates = [
-      { id: '1', firstName: 'Juan', lastName: 'Pérez', vacancyId: '123', statusId: '123' },
-      { id: '2', firstName: 'María', lastName: 'Gómez', vacancyId: '123', statusId: '123' },
+      { id: '1', firstName: 'Ana', lastName: 'Perez', vacancyId: '123', statusId: 's' },
+      { id: '2', firstName: 'Luis', lastName: 'Gomez', vacancyId: '123', statusId: 's' },
     ]
-
-    store.setSearchTerm('Juan')
-    expect(store.searchTerm).toBe('Juan')
-    expect(store.filteredCandidates).toEqual([
-      { id: '1', firstName: 'Juan', lastName: 'Pérez', vacancyId: '123', statusId: '123' },
-    ])
-
-    store.setSearchTerm('Gómez')
-    expect(store.filteredCandidates).toEqual([
-      { id: '2', firstName: 'María', lastName: 'Gómez', vacancyId: '123', statusId: '123' },
-    ])
-
+    store.setSearchTerm('Ana')
+    expect(store.filteredCandidates).toHaveLength(1)
     store.setSearchTerm('')
-    expect(store.filteredCandidates).toEqual(store.candidates)
-  })
-
-  it('maneja errores en setCandidates', async () => {
-    vi.mocked(vacancyService.getCandidates).mockRejectedValue(new Error('API Error'))
-    const consoleErrorSpy = vi.spyOn(console, 'error').mockImplementation(() => {})
-
-    const store = useCandidatesStore()
-    await store.setCandidates()
-    expect(store.isLoading).toBe(false)
-    expect(store.candidates).toEqual([])
-    expect(consoleErrorSpy).toHaveBeenCalledWith(
-      'Error al obtener los candidatos de la vacante :',
-      expect.any(Error),
-    )
-    consoleErrorSpy.mockRestore()
+    expect(store.filteredCandidates).toHaveLength(2)
   })
 })

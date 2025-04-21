@@ -15,10 +15,10 @@ vi.mock('@/components/Sidebar/SidebarMenu.vue', () => ({
 }))
 vi.mock('@/components/Recruitment/RecruitmentCard.vue', () => ({
   default: {
-    template: '<div data-testid="recruitment-card" />',
+    template: '<div data-testid="Recruitment-card" />',
   },
 }))
-vi.mock('@/components/shared/transitions/slide-transition.vue', () => ({
+vi.mock('@/components/shared/transitions/SlideTransition.vue', () => ({
   default: {
     props: ['show'],
     template: '<div data-testid="slide-transition"><slot /></div>',
@@ -38,20 +38,20 @@ describe('RecruitmentPage', () => {
     vi.resetModules()
   })
 
-  it('renderiza correctamente en modo escritorio', async () => {
+  it('renders correctly in desktop mode', async () => {
     mockUseIsMobile(false)
-    const wrapper = mount((await import('../../src/views/RecruitmentBody.vue')).default)
+    const wrapper = mount((await import('../../../src/views/RecruitmentBody.vue')).default)
 
     expect(wrapper.find('h1').text()).toBe('Reclutamiento')
     expect(wrapper.find('img[alt="shurperro"]').attributes('src')).toBe('mocked-image.png')
     expect(wrapper.find('[data-testid="sidebar-menu"]').exists()).toBe(true)
-    expect(wrapper.find('[data-testid="recruitment-card"]').exists()).toBe(true)
+    expect(wrapper.find('[data-testid="Recruitment-card"]').exists()).toBe(true)
     expect(wrapper.find('img[alt="menu"]').exists()).toBe(false)
   })
 
-  it('muestra icono de menú y cambia estado al hacer clic en modo móvil', async () => {
+  it('shows menu icon and changes state when clicked in mobile mode', async () => {
     mockUseIsMobile(true)
-    const wrapper = mount((await import('../../src/views/RecruitmentBody.vue')).default)
+    const wrapper = mount((await import('../../../src/views/RecruitmentBody.vue')).default)
 
     const menuIcon = wrapper.find('img[alt="menu"]')
     expect(menuIcon.exists()).toBe(true)

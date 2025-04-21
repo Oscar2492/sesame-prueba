@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { ref } from 'vue'
-import SesameButton from '@/components/shared/atoms/sesame-button.vue'
+import LabeledButton from '@/components/shared/atoms/LabeledButton.vue'
 import { useVacancyStore } from '@/stores/vacancy.ts'
 import { useCandidatesStore } from '@/stores/candidates.ts'
 
@@ -49,8 +49,8 @@ const submitForm = () => {
       />
     </div>
     <div class="flex items-center justify-around">
-      <sesame-button label="Añadir" />
-      <sesame-button type="button" label="Cancel" @click="$emit('close')" />
+      <labeled-button label="Añadir" />
+      <labeled-button type="button" label="Cancel" @click="$emit('close')" />
     </div>
   </form>
 </template>

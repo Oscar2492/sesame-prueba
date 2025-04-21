@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { defineEmits, defineProps } from 'vue'
+import { defineProps } from 'vue'
 
 defineProps({
   isOpen: Boolean,
 })
-
-const emit = defineEmits(['modal-close'])
 </script>
 
 <template>

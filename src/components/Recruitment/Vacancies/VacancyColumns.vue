@@ -13,7 +13,7 @@ const icons = ['new', 'interview', 'hired', 'ban']
 
 <template>
   <div
-    class="flex justify-between gap-1.5 items-stretch h-[37rem] p-4 overflow-x-auto scroll-custom"
+    class="scroll-custom flex h-[37rem] items-stretch justify-between gap-1.5 overflow-x-auto p-4"
   >
     <vacancy-column
       v-for="(column, index) in vacancyStatus"

@@ -3,7 +3,7 @@ import RecruitmentCard from '@/components/Recruitment/RecruitmentCard.vue'
 import SidebarMenu from '@/components/Sidebar/SidebarMenu.vue'
 import { useIsMobile } from '@/utils/isMobile'
 import { ref } from 'vue'
-import SlideTransition from '@/components/shared/transitions/slide-transition.vue'
+import SlideTransition from '@/components/shared/transitions/SlideTransition.vue'
 
 const { isMobile } = useIsMobile()
 const isSidebarOpen = ref(false)

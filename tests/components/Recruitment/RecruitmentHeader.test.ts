@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import RecruitmentHeader from '../../src/components/Recruitment/RecruitmentHeader.vue'
+import RecruitmentHeader from '../../../src/components/Recruitment/RecruitmentHeader.vue'
 import { describe, expect, it } from 'vitest'
 
 describe('RecruitmentHeader', () => {
