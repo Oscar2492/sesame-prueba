@@ -22,7 +22,7 @@ describe('Vacancy Store', () => {
     expect(store.vacancyStatus).toEqual([])
   })
 
-  it('setVacancyStatus obtiene las vacanter', async () => {
+  it('setVacancyStatus obtiene las vacantes', async () => {
     const mockVacancyStatus: VacancyStatus[] = [
       {
         id: 'stage-1',
