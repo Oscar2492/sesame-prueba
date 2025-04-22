@@ -68,8 +68,8 @@ describe('VacancyColumn', () => {
 
     const candidate = {
       id: '123',
-      firstName: 'Test',
-      lastName: 'Candidate',
+      firstName: 'Oscar',
+      lastName: 'Roza',
       vacancyId: '2',
       statusId: '1',
     }
@@ -84,8 +84,8 @@ describe('VacancyColumn', () => {
 
     expect(mockUpdateCandidate).toHaveBeenCalledWith({
       id: '123',
-      firstName: 'Test',
-      lastName: 'Candidate',
+      firstName: 'Oscar',
+      lastName: 'Roza',
       vacancyId: '2',
       statusId: '3',
     })

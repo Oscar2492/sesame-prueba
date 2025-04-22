@@ -38,7 +38,7 @@ describe('Candidates Store', () => {
   })
 
   it('addCandidates adds a new candidate', async () => {
-    const candidate = { firstName: 'Ana', lastName: 'Rosa', vacancyId: '123', statusId: 's' }
+    const candidate = { firstName: 'Oscar', lastName: 'Roza', vacancyId: '123', statusId: 's' }
     const result = [{ ...candidate, id: '1' }]
     vi.mocked(vacancyService.addNewCandidates).mockResolvedValue({ data: result })
     vi.mocked(vacancyService.getCandidates).mockResolvedValue({ data: result })
@@ -67,10 +67,10 @@ describe('Candidates Store', () => {
   it('filteredCandidates responds to the searchTerm', () => {
     const store = useCandidatesStore()
     store.candidates = [
-      { id: '1', firstName: 'Ana', lastName: 'Perez', vacancyId: '123', statusId: 's' },
-      { id: '2', firstName: 'Luis', lastName: 'Gomez', vacancyId: '123', statusId: 's' },
+      { id: '1', firstName: 'Oscar', lastName: 'Roza', vacancyId: '123', statusId: 's' },
+      { id: '2', firstName: 'Beltran', lastName: 'Garcia', vacancyId: '123', statusId: 's' },
     ]
-    store.setSearchTerm('Ana')
+    store.setSearchTerm('Oscar')
     expect(store.filteredCandidates).toHaveLength(1)
     store.setSearchTerm('')
     expect(store.filteredCandidates).toHaveLength(2)
