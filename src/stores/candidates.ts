@@ -71,5 +71,6 @@ export const useCandidatesStore = defineStore('candidates', () => {
     isLoading,
     candidates,
     filteredCandidates,
+    searchTerm,
   }
 })

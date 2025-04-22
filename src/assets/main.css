@@ -54,6 +54,14 @@ body {
   background-color: var(--color-ban);
 }
 
+.color-neutral {
+  color: var(--color-neutral);
+}
+
+.color-purple {
+  color: var(--color-font-purple);
+}
+
 .scroll-custom::-webkit-scrollbar {
   width: 6px;
   height: 6px;
@@ -64,7 +72,7 @@ body {
 }
 
 .scroll-custom::-webkit-scrollbar-thumb {
-  background-color: var(--color-neutral-background);
+  background-color: var(--color-neutral);
   border-radius: 6px;
   border: none;
   margin: 4px;

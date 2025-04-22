@@ -1,11 +1,9 @@
 <script setup lang="ts">
-import { defineEmits, defineProps } from 'vue'
+import { defineProps } from 'vue'
 
 defineProps({
   isOpen: Boolean,
 })
-
-const emit = defineEmits(['modal-close'])
 </script>
 
 <template>
@@ -14,11 +12,8 @@ const emit = defineEmits(['modal-close'])
       <div class="mb-4 text-lg font-semibold">
         <slot name="header" />
       </div>
-      <div class="mb-4 text-sm text-gray-700">
+      <div class="text-sm text-gray-700">
         <slot name="content" />
-      </div>
-      <div class="">
-        <slot name="footer" />
       </div>
     </div>
   </div>
