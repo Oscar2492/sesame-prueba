@@ -16,14 +16,12 @@ const props = defineProps<{
 const candidatesStore = useCandidatesStore()
 const candidates = computed(() => candidatesStore.filteredCandidates)
 
-const Candidatesfilter = computed(() => {
-  return candidates.value.filter((candidate: Candidate) => {
-    return candidate.status?.id === props.column.id
-  })
+const candidatesfilter = computed(() => {
+  return candidates.value.filter((candidate: Candidate) => candidate.status?.id === props.column.id)
 })
 
 const background = computed(() =>
-  Candidatesfilter.value.length ? 'bg-white' : 'bg-neutral-background',
+  candidatesfilter.value.length ? 'bg-white' : 'bg-neutral-background',
 )
 const iconsMap: Record<string, string> = {
   new: iconNew,
@@ -56,7 +54,7 @@ const allowDrop = (event: DragEvent) => {
 
 <template>
   <div
-    class="bg-neutral-background scroll-custom min-w-[18.5rem] overflow-x-hidden overflow-y-auto rounded-md border border-gray-200 p-4 text-center"
+    class="scroll-custom min-w-[18.5rem] overflow-x-hidden overflow-y-auto rounded-md border border-gray-200 p-4 text-center"
     :class="background"
     @dragover="allowDrop"
     @drop="onDrop"
@@ -66,6 +64,6 @@ const allowDrop = (event: DragEvent) => {
       <img :src="icon" class="h-5 w-5" alt="" />
       <h2 class="text-base font-medium">{{ column.name }}</h2>
     </div>
-    <CandidatesCard :candidates="Candidatesfilter" />
+    <CandidatesCard :candidates="candidatesfilter" />
   </div>
 </template>
