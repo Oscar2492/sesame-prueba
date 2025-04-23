@@ -136,3 +136,6 @@ Puedes ejecutar los tests del proyecto con el siguiente comando:
   dicha edición.
 - Otra mejora pendiente es implementar el uso del estado `isLoading` que ya existe en los stores para mostrar un
   indicador de carga (spinner) durante las llamadas a la API de datos.
+- La aplicación está traducida al inglés y al español, utilizando vue-i18n para gestionar las traducciones. Esto permite
+  a los usuarios cambiar el idioma dinámicamente mediante un selector de idioma, garantizando una experiencia accesible
+  para usuarios de ambos idiomas.
