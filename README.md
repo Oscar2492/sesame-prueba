@@ -1,39 +1,131 @@
-# sesame
+# Sesame
 
-This template should help get you started developing with Vue 3 in Vite.
+Prueba tecnica para Sesame de Oscar Roza Fernandez.
 
-## Recommended IDE Setup
+## 🌐 Demo
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
+Puedes ver la aplicación en funcionamiento aquí: [https://sesame-prueba.vercel.app/](https://sesame-prueba.vercel.app/)
 
-## Type Support for `.vue` Imports in TS
+## 🚀 Tecnologías Principales
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) to make the TypeScript language service aware of `.vue` types.
+- Vue 3.5.13
+- TypeScript 5.8.0
+- Vite 6.2.4
+- Pinia 3.0.1 (para gestión de estado)
+- Vue Router 4.5.0
+- @tailwindcss/vite 4.1.4
 
-## Customize configuration
+## 📋 Prerequisitos
 
-See [Vite Configuration Reference](https://vite.dev/config/).
+Antes de comenzar, asegúrate de tener instalado en tu máquina:
 
-## Project Setup
+- Node.js (última versión LTS recomendada)
+- npm (incluido con Node.js)
+- [Git](https://git-scm.com/)
+- [Docker](https://www.docker.com/) (y que Docker Desktop esté abierto)
 
-```sh
-npm install
+---
+
+## 🛠️ Instalación
+
+## 🚀 Pasos para montar el proyecto
+
+### 1. Crear una carpeta donde alojar el proyecto
+
+```bash
+  mkdir sesame-prueba
 ```
 
-### Compile and Hot-Reload for Development
+### 2. Acceder a la carpeta creada
 
-```sh
-npm run dev
+```bash
+  cd sesame-prueba
 ```
 
-### Type-Check, Compile and Minify for Production
+### 3. Clonar el repositorio de GitHub
 
-```sh
-npm run build
+```bash
+  git clone https://github.com/usuario/repositorio.git
 ```
 
-### Lint with [ESLint](https://eslint.org/)
+> 🔁 Reemplaza la URL por la del repositorio real si es diferente.
 
-```sh
-npm run lint
+### 4. Acceder a la carpeta del proyecto clonado
+
+```bash
+  cd repositorio
 ```
+
+---
+
+## 🐳 Construir y ejecutar el contenedor Docker
+
+### 5. Construir la imagen de Docker
+
+```bash
+  docker build -t sesame-prueba-oscar .
+```
+
+> ⚠️ **IMPORTANTE**: Asegúrate de que Docker Desktop esté abierto y corriendo.  
+> Si no lo está, el comando `docker build` no funcionará.
+
+### 6. Ejecutar el contenedor
+
+```bash
+  docker run -p 5173:5173 sesame-prueba-oscar
+```
+
+> 🎯 Esto levantará el proyecto y podrás acceder desde tu navegador en:  
+> `http://localhost:5173`
+
+---
+
+## ✅ ¡Listo!
+
+Tu proyecto está corriendo correctamente en un contenedor Docker.  
+Puedes detener el contenedor con `CTRL + C` o buscar su ID y detenerlo con:
+
+```bash
+  docker ps
+docker stop <ID_DEL_CONTENEDOR>
+```
+
+---
+
+Si tienes cualquier problema, revisa que:
+
+- Docker Desktop esté abierto
+- El puerto 5173 no esté siendo usado por otra app
+- El `Dockerfile` esté en la raíz del proyecto
+
+---
+
+## 🧪 Ejecutar tests
+
+Puedes ejecutar los tests del proyecto con el siguiente comando:
+
+```bash
+  npm run test
+```
+
+> 🧠 Si vas a ejecutar los tests **desde tu entorno local**, asegúrate de instalar las dependencias primero con:
+
+```bash
+  npm install
+```
+
+> 🐳 Si ejecutas el proyecto desde Docker, el `npm install` ya se ejecuta automáticamente al construir la imagen, así que
+> no hace falta hacerlo manualmente.
+
+---
+
+## 🗒️ Comentarios del proyecto
+
+- He decidido filtrar el estado de vacante "Oferta" ya que no aparecía representado en el diseño proporcionado. Valoré
+  la posibilidad de mantenerlo, pero al no contar con un icono específico para dicho estado, opté por excluirlo para
+  mantener la coherencia visual.
+- Considero que una mejora interesante sería incluir un menú de edición de la información del candidato. Este permitiría
+  completar campos adicionales como *email, dirección, género, LinkedIn*, entre otros.
+  La idea sería que, desde cada tarjeta de candidato, al hacer clic en el icono de los tres puntos verticales, se
+  desplegara un menú contextual con la opción **"Editar candidato"**, la cual redirigiría a un formulario dedicado para
+  dicha edición.
