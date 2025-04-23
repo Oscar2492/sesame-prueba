@@ -138,4 +138,7 @@ Puedes ejecutar los tests del proyecto con el siguiente comando:
   indicador de carga (spinner) durante las llamadas a la API de datos.
 - La aplicación está traducida al inglés y al español, utilizando vue-i18n para gestionar las traducciones. Esto permite
   a los usuarios cambiar el idioma dinámicamente mediante un selector de idioma, garantizando una experiencia accesible
-  para usuarios de ambos idiomas.
+  para usuarios de ambos idiomas. Sé que la ubicación actual del selector de idioma en la parte superior derecha no es
+  la más adecuada, pero lo he colocado ahí para que esté a la vista y se pueda interactuar con él fácilmente.
+- He habilitado en la pestaña de candidatos una tabla hecha con CSS Grid que muestra la información de todos los
+  candidatos, incluyendo su nombre, fecha de creación y estado. 
