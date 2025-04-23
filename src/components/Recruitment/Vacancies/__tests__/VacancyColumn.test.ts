@@ -1,34 +1,54 @@
 import { describe, expect, it, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
-import VacancyColumn from '../../../src/components/Recruitment/Vacancies/VacancyColumn.vue'
+import VacancyColumn from '../VacancyColumn.vue'
+import CandidatesCard from '../../Candidates/CandidatesCard.vue'
 
 vi.mock('@/assets/icons/icon-new.svg', () => ({
   default: '@/assets/icons/icon-new.svg',
 }))
 
+let filteredCandidatesMock = []
 const mockUpdateCandidate = vi.fn()
-vi.mock('../../../src/stores/Candidates', () => {
-  return {
-    useCandidatesStore: vi.fn(() => ({
-      filteredCandidates: [
-        { firstName: 'Oscar', lastName: 'Roza', status: { id: 1 } },
-        { firstName: 'Beltran', lastName: 'Garcia', status: { id: 1 } },
-      ],
-      updateCandidate: mockUpdateCandidate,
-    })),
-  }
-})
+
+vi.mock('@/stores/Candidates', () => ({
+  useCandidatesStore: () => ({
+    get filteredCandidates() {
+      return filteredCandidatesMock
+    },
+    updateCandidate: mockUpdateCandidate,
+  }),
+}))
+
 describe('VacancyColumn', () => {
-  it('renders the correct background based on Candidates', () => {
+  const candidates = [
+    { firstName: 'Oscar', lastName: 'Roza', status: { id: 1 } },
+    { firstName: 'Beltran', lastName: 'Garcia', status: { id: 1 } },
+  ]
+
+  it('renders with white background when has candidates', () => {
+    filteredCandidatesMock = candidates
     const wrapper = mount(VacancyColumn, {
       props: {
         column: { id: 1, name: 'New' },
         img: 'new',
       },
     })
-    const div = wrapper.find('div')
-    expect(div.classes()).toContain('bg-white')
+    const columnContainer = wrapper.find('[data-testid="vacancy-status-new"]')
+    expect(columnContainer.classes()).toContain('bg-white')
   })
+
+  it('renders with neutral background when no candidates', () => {
+    filteredCandidatesMock = []
+    const wrapper = mount(VacancyColumn, {
+      props: {
+        column: { id: 1, name: 'New' },
+        img: 'new',
+      },
+    })
+    const columnContainer = wrapper.find('[data-testid="vacancy-status-new"]')
+    expect(columnContainer.classes()).toContain('bg-neutral-background')
+  })
+
   it('displays the correct icon based on the "img" prop', () => {
     const wrapper = mount(VacancyColumn, {
       props: {
@@ -36,9 +56,10 @@ describe('VacancyColumn', () => {
         img: 'new',
       },
     })
-    const icon = wrapper.find('img')
+    const icon = wrapper.find('[data-testid="vacancy-status-icon-new"]')
     expect(icon.attributes('src')).toEqual('@/assets/icons/icon-new.svg')
   })
+
   it('renders the correct column name', () => {
     const wrapper = mount(VacancyColumn, {
       props: {
@@ -48,16 +69,19 @@ describe('VacancyColumn', () => {
     })
     expect(wrapper.text()).toContain('Interview')
   })
-  it('renders the correct number of Candidates', () => {
+
+  it('renders the correct number of candidates', () => {
+    filteredCandidatesMock = candidates
     const wrapper = mount(VacancyColumn, {
       props: {
         column: { id: 1, name: 'New' },
         img: 'new',
       },
     })
-    expect(wrapper.text()).toContain('Oscar')
-    expect(wrapper.text()).toContain('Beltran')
+    const candidatesWrapper = wrapper.findComponent(CandidatesCard)
+    expect(candidatesWrapper.props('candidates')).toHaveLength(2)
   })
+
   it('calls updateCandidate when a candidate is dropped', async () => {
     const wrapper = mount(VacancyColumn, {
       props: {

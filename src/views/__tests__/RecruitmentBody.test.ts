@@ -40,7 +40,7 @@ describe('RecruitmentPage', () => {
 
   it('renders correctly in desktop mode', async () => {
     mockUseIsMobile(false)
-    const wrapper = mount((await import('../../../src/views/RecruitmentBody.vue')).default)
+    const wrapper = mount((await import('../RecruitmentBody.vue')).default)
 
     expect(wrapper.find('h1').text()).toBe('Reclutamiento')
     expect(wrapper.find('img[alt="shurperro"]').attributes('src')).toBe('mocked-image.png')
@@ -51,9 +51,9 @@ describe('RecruitmentPage', () => {
 
   it('shows menu icon and changes state when clicked in mobile mode', async () => {
     mockUseIsMobile(true)
-    const wrapper = mount((await import('../../../src/views/RecruitmentBody.vue')).default)
+    const wrapper = mount((await import('../RecruitmentBody.vue')).default)
 
-    const menuIcon = wrapper.find('img[alt="menu"]')
+    const menuIcon = wrapper.find('img[alt="Open menu"]')
     expect(menuIcon.exists()).toBe(true)
 
     await menuIcon.trigger('click')

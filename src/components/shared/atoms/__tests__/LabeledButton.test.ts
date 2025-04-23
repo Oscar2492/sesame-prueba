@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import LabeledButton from '../../../../src/components/shared/atoms/LabeledButton.vue'
+import LabeledButton from '../LabeledButton.vue'
 import { mount } from '@vue/test-utils'
 
 describe('LabeledButton', () => {
@@ -9,6 +9,8 @@ describe('LabeledButton', () => {
         label: 'label',
       },
     })
-    expect(wrapper.find('button').text()).toBe('label')
+
+    const button = wrapper.find('[data-test-id="primary-button"]')
+    expect(button.text()).toBe('label')
   })
 })

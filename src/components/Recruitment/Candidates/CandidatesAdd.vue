@@ -11,8 +11,12 @@ const closeForm = () => (isFormOpen.value = false)
 </script>
 
 <template>
-  <div>
-    <labeled-button label="Añadir candidato" @click="openForm" />
+  <div data-testid="candidate-add-container">
+    <labeled-button
+      label="Añadir candidato"
+      @click="openForm"
+      data-testid="open-candidate-form-button"
+    />
     <div>
       <fade-transition :show="isFormOpen">
         <modal-base :is-open="isFormOpen">

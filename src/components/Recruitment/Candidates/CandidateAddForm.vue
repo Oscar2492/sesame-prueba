@@ -11,7 +11,6 @@ const vacancyStore = useVacancyStore()
 const candidatesStore = useCandidatesStore()
 const firstName = ref('')
 const lastName = ref('')
-
 const submitForm = () => {
   candidatesStore.addCandidates({
     firstName: firstName.value,
@@ -22,9 +21,8 @@ const submitForm = () => {
   emit('close')
 }
 </script>
-
 <template>
-  <form @submit.prevent="submitForm" class="space-y-4">
+  <form @submit.prevent="submitForm" class="space-y-4" data-testid="candidate-add-form">
     <div>
       <label for="firstName" class="block text-sm font-medium text-gray-700">First Name</label>
       <input
@@ -34,9 +32,9 @@ const submitForm = () => {
         class="mt-1 w-full rounded-md border border-gray-300 p-2"
         placeholder="Enter first name"
         required
+        data-testid="first-name-input"
       />
     </div>
-
     <div>
       <label for="lastName" class="block text-sm font-medium text-gray-700">Last Name</label>
       <input
@@ -46,6 +44,7 @@ const submitForm = () => {
         class="mt-1 w-full rounded-md border border-gray-300 p-2"
         placeholder="Enter last name"
         required
+        data-testid="last-name-input"
       />
     </div>
     <div class="flex items-center justify-around">
