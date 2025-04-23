@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
-import LabeledInput from '../../../../src/components/shared/atoms/LabeledInput.vue'
+import LabeledInput from '../LabeledInput.vue'
 
 describe('LabeledInput.vue', () => {
   it('renders the placeholder', () => {
@@ -12,7 +12,9 @@ describe('LabeledInput.vue', () => {
         width: 'm',
       },
     })
-    expect(wrapper.find('input').attributes('placeholder')).toBe('Search...')
+    expect(wrapper.find('[data-test-id="search-input"]').attributes('placeholder')).toBe(
+      'Search...',
+    )
   })
 
   it('applies correct size classes', () => {
@@ -24,7 +26,7 @@ describe('LabeledInput.vue', () => {
         width: 's',
       },
     })
-    const input = wrapper.find('input')
+    const input = wrapper.find('[data-test-id="search-input"]')
     expect(input.classes()).toContain('h-16')
     expect(input.classes()).toContain('w-16')
   })
@@ -38,7 +40,7 @@ describe('LabeledInput.vue', () => {
         width: 'm',
       },
     })
-    const input = wrapper.find('input')
+    const input = wrapper.find('[data-test-id="search-input"]')
     await input.setValue('new value')
     expect(wrapper.emitted('update:modelValue')?.[0]).toEqual(['new value'])
   })

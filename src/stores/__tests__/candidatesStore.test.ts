@@ -1,15 +1,15 @@
 import { createPinia, setActivePinia } from 'pinia'
-import { useCandidatesStore } from '../src/stores/candidates'
-import * as vacancyService from '../src/services/vacancyService'
+import { useCandidatesStore } from '../candidates'
+import * as vacancyService from '../../services/vacancyService'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
-vi.mock('../src/services/vacancyService', () => ({
+vi.mock('../../services/vacancyService', () => ({
   getCandidates: vi.fn(),
   addNewCandidates: vi.fn(),
   updateCandidates: vi.fn(),
 }))
 
-vi.mock('../src/stores/vacancy', () => ({
+vi.mock('../vacancy', () => ({
   useVacancyStore: () => ({ vacancyId: '123' }),
 }))
 

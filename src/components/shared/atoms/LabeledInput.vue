@@ -36,9 +36,18 @@ const handleInputChange = () => {
 </script>
 
 <template>
-  <div class="bg-input border-neutral mt-1 flex items-center gap-2 rounded-xl border px-3">
-    <img src="@/assets/icons/icon-search.svg" alt="Icono" class="h-4 w-4" />
+  <div
+    data-test-id="search-container"
+    class="bg-input border-neutral mt-1 flex items-center gap-2 rounded-xl border px-3"
+  >
+    <img
+      data-test-id="search-icon"
+      src="@/assets/icons/icon-search.svg"
+      alt="Icono"
+      class="h-4 w-4"
+    />
     <input
+      data-test-id="search-input"
       type="text"
       :placeholder="placeholder"
       v-model="textValue"

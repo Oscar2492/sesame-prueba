@@ -13,8 +13,12 @@ function selectTab(tab: 'vacancy' | 'candidate') {
 </script>
 
 <template>
-  <div class="border-neutral flex w-full items-center gap-12 border-b text-base font-bold">
+  <div
+    data-test-id="tabs-container"
+    class="border-neutral flex w-full items-center gap-12 border-b text-base font-bold"
+  >
     <div
+      data-test-id="vacancy-tab"
       class="relative cursor-pointer pb-4"
       :class="[
         props.selectedTab === 'vacancy'
@@ -26,6 +30,7 @@ function selectTab(tab: 'vacancy' | 'candidate') {
       Vacantes
     </div>
     <div
+      data-test-id="candidate-tab"
       class="relative cursor-pointer pb-4"
       :class="[
         props.selectedTab === 'candidate'

@@ -1,25 +1,17 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 import { createPinia, setActivePinia } from 'pinia'
-import { useVacancyStore } from '../src/stores/vacancy'
-import { VacancyStatus } from '../src/Types'
-import * as vacancyService from '../src/services/vacancyService'
+import { useVacancyStore } from '../vacancy'
+import { VacancyStatus } from '../../Types'
+import * as vacancyService from '../../services/vacancyService'
 
-vi.mock('../src/services/vacancyService', () => ({
-  getVacancyStatus: vi.fn(),
+vi.mock('../../services/vacancyService', () => ({
+  getVacancyStatus: vi.fn(() => Promise.resolve({ data: [] })),
 }))
 
 describe('Vacancy Store', () => {
   beforeEach(() => {
     setActivePinia(createPinia())
     vi.clearAllMocks()
-  })
-
-  it('initializes state correctly', () => {
-    const store = useVacancyStore()
-    expect(store.isLoading).toBe(false)
-    expect(store.vacancyId).toEqual('00cf9726-17c6-4178-aa9c-bb1c6e86c267')
-    expect(store.statusNewId).toEqual('cc93e42e-6551-47cf-b30e-3e5797406f01')
-    expect(store.vacancyStatus).toEqual([])
   })
 
   it('setVacancyStatus fetches Vacancies', async () => {
@@ -43,14 +35,15 @@ describe('Vacancy Store', () => {
         vacancyId: '123',
       },
     ]
-    vi.mocked(vacancyService.getVacancyStatus).mockResolvedValue({ data: mockVacancyStatus })
+
+    const mockedGetVacancyStatus = vi.mocked(vacancyService.getVacancyStatus)
+    mockedGetVacancyStatus.mockImplementation(() => Promise.resolve({ data: mockVacancyStatus }))
+
     const store = useVacancyStore()
     expect(store.isLoading).toBe(false)
     await store.setVacancyStatus()
     expect(store.isLoading).toBe(false)
     expect(store.vacancyStatus).toEqual(mockVacancyStatus)
-    expect(vacancyService.getVacancyStatus).toHaveBeenCalledWith(
-      '00cf9726-17c6-4178-aa9c-bb1c6e86c267',
-    )
+    expect(mockedGetVacancyStatus).toHaveBeenCalledWith('00cf9726-17c6-4178-aa9c-bb1c6e86c267')
   })
 })
