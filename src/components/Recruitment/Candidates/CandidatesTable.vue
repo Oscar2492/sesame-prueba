@@ -26,7 +26,7 @@ const candidates = computed(() => candidateStore.filteredCandidates)
     >
       <div data-testid="candidate-name">{{ `${candidate.firstName} ${candidate.lastName}` }}</div>
       <div data-testid="candidate-date">{{ dateFormater(candidate.createdAt) }}</div>
-      <div data-testid="candidate-vacancy">{{ candidate.status?.name || 'N/A' }}</div>
+      <div data-testid="candidate-vacancy">{{ candidate.status?.name || '-' }}</div>
     </div>
 
     <div

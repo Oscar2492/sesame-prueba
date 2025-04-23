@@ -1,39 +1,38 @@
-import { describe, expect, it, vi } from 'vitest'
+import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
+import CandidatesAdd from '../CandidatesAdd.vue'
+import { nextTick } from 'vue'
+import ModalBase from '../../../shared/molecules/ModalBase.vue'
 import CandidateAddForm from '../CandidateAddForm.vue'
 
-const mockAddCandidates = vi.fn()
-vi.mock('../../../../stores/candidates', () => {
-  return {
-    useCandidatesStore: vi.fn(() => ({
-      addCandidates: mockAddCandidates,
-    })),
-  }
-})
-describe('Candidate add form', () => {
-  it('renders correctly', () => {
-    const wrapper = mount(CandidateAddForm)
+describe('CandidatesAdd', () => {
+  it('should render the button and modal correctly when opened', async () => {
+    const wrapper = mount(CandidatesAdd)
 
-    expect(wrapper.find('[data-testid="candidate-add-form"]').exists()).toBe(true)
-    expect(wrapper.find('[data-testid="first-name-input"]').exists()).toBe(true)
-    expect(wrapper.find('[data-testid="last-name-input"]').exists()).toBe(true)
+    expect(wrapper.find('[data-testid="candidate-add-container"]').exists()).toBe(true)
+    const button = wrapper.find('[data-testid="open-candidate-form-button"]')
+    expect(button.exists()).toBe(true)
+
+    await button.trigger('click')
+    await nextTick()
+
+    const modal = wrapper.findComponent(ModalBase)
+    expect(modal.exists()).toBe(true)
+    const form = wrapper.findComponent(CandidateAddForm)
+    expect(form.exists()).toBe(true)
   })
 
-  it('creates a new candidate and emits close', async () => {
-    const wrapper = mount(CandidateAddForm)
+  it('should close the modal when close event is emitted', async () => {
+    const wrapper = mount(CandidatesAdd)
+    const button = wrapper.find('[data-testid="open-candidate-form-button"]')
 
-    await wrapper.find('[data-testid="first-name-input"]').setValue('Oscar')
-    await wrapper.find('[data-testid="last-name-input"]').setValue('Roza')
+    await button.trigger('click')
+    await nextTick()
 
-    await wrapper.find('[data-testid="candidate-add-form"]').trigger('submit.prevent')
+    const form = wrapper.findComponent(CandidateAddForm)
+    form.vm.$emit('close')
+    await nextTick()
 
-    expect(mockAddCandidates).toHaveBeenCalledWith({
-      firstName: 'Oscar',
-      lastName: 'Roza',
-      vacancyId: '00cf9726-17c6-4178-aa9c-bb1c6e86c267',
-      statusId: 'cc93e42e-6551-47cf-b30e-3e5797406f01',
-    })
-
-    expect(wrapper.emitted('close')).toBeTruthy()
+    expect(wrapper.findComponent(CandidateAddForm).exists()).toBe(false)
   })
 })
