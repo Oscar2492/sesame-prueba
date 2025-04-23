@@ -4,7 +4,6 @@ import { useVacancyStore } from '../vacancy'
 import { VacancyStatus } from '../../Types'
 import * as vacancyService from '../../services/vacancyService'
 
-// Corregimos la configuración del mock
 vi.mock('../../services/vacancyService', () => ({
   getVacancyStatus: vi.fn(() => Promise.resolve({ data: [] })),
 }))
@@ -37,7 +36,6 @@ describe('Vacancy Store', () => {
       },
     ]
 
-    // Corregimos la forma de configurar el mock para la prueba específica
     const mockedGetVacancyStatus = vi.mocked(vacancyService.getVacancyStatus)
     mockedGetVacancyStatus.mockImplementation(() => Promise.resolve({ data: mockVacancyStatus }))
 

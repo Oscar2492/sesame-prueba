@@ -13,6 +13,7 @@ const icons = ['new', 'interview', 'hired', 'ban']
 
 <template>
   <div
+    data-testid="vacancy-columns-container"
     class="scroll-custom flex h-[37rem] items-stretch justify-between gap-1.5 overflow-x-auto p-4"
   >
     <vacancy-column

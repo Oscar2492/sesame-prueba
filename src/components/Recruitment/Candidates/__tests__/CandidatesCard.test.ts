@@ -13,24 +13,27 @@ describe('CandidatesCard', () => {
         ],
       },
     })
-    const cards = wrapper.findAll('span.truncate')
+    const cards = wrapper.findAll('[data-testid="candidate-name"]')
     expect(cards.length).toBe(2)
   })
+
   it('render the correct candidate', () => {
     const wrapper = mount(CandidatesCard, {
       props: {
         candidates: [{ firstName: 'Oscar', lastName: 'Roza', status: { id: 1 } }],
       },
     })
-    expect(wrapper.text()).toContain('Oscar')
+    const candidateName = wrapper.find('[data-testid="candidate-name"]')
+    expect(candidateName.text()).toContain('Oscar')
   })
+
   it('transfer candidate when is dragged', async () => {
     const wrapper = mount(CandidatesCard, {
       props: {
         candidates: [{ firstName: 'Oscar', lastName: 'Roza', status: { id: 1 } }],
       },
     })
-    const candidateEl = wrapper.find('[draggable="true"]')
+    const candidateEl = wrapper.find('[data-testid="candidate-card"]')
     const setData = vi.fn()
     const mockEvent = { dataTransfer: { setData } }
 

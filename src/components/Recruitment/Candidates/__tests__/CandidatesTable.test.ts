@@ -30,20 +30,25 @@ beforeEach(() => {
     },
   ]
 })
+
 describe('CandidatesTable', () => {
   it('renders a list of candidates', () => {
     const wrapper = mount(CandidatesTable)
-    expect(wrapper.text()).toContain('Oscar Roza')
+    const candidateRow = wrapper.find('[data-testid="candidate-name"]')
+    expect(candidateRow.text()).toBe('Oscar Roza')
   })
+
   it('renders no hay candidatos', async () => {
     filteredCandidatesMock = []
-
     const wrapper = mount(CandidatesTable)
-    expect(wrapper.text()).toContain('No hay candidatos disponibles.')
+    const noDataMessage = wrapper.find('[data-testid="no-candidates-message"]')
+    expect(noDataMessage.text()).toBe('No hay candidatos disponibles.')
   })
+
   it('renders date formated', () => {
     const wrapper = mount(CandidatesTable)
+    const dateCell = wrapper.find('[data-testid="candidate-date"]')
     expect(dateFormater).toHaveBeenCalledWith('2025-04-20T12:00:00.000Z')
-    expect(wrapper.text()).toContain('21/04/2025')
+    expect(dateCell.text()).toBe('21/04/2025')
   })
 })

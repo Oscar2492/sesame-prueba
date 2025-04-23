@@ -26,8 +26,8 @@ describe('VacancyColumn', () => {
         img: 'new',
       },
     })
-    const div = wrapper.find('div')
-    expect(div.classes()).toContain('bg-white')
+    const columnContainer = wrapper.find('[data-testid="vacancy-status-new"]')
+    expect(columnContainer.classes()).toContain('bg-white')
   })
   it('displays the correct icon based on the "img" prop', () => {
     const wrapper = mount(VacancyColumn, {
@@ -36,7 +36,7 @@ describe('VacancyColumn', () => {
         img: 'new',
       },
     })
-    const icon = wrapper.find('img')
+    const icon = wrapper.find('[data-testid="vacancy-status-icon-new"]')
     expect(icon.attributes('src')).toEqual('@/assets/icons/icon-new.svg')
   })
   it('renders the correct column name', () => {

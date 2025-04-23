@@ -1,6 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
-import LabeledButton from '../../../shared/atoms/LabeledButton.vue'
 import CandidateAddForm from '../CandidateAddForm.vue'
 
 const mockAddCandidates = vi.fn()
@@ -15,16 +14,18 @@ describe('Candidate add form', () => {
   it('renders correctly', () => {
     const wrapper = mount(CandidateAddForm)
 
-    expect(wrapper.find('input').exists()).toBe(true)
-    expect(wrapper.findComponent(LabeledButton).exists()).toBe(true)
+    expect(wrapper.find('[data-testid="candidate-add-form"]').exists()).toBe(true)
+    expect(wrapper.find('[data-testid="first-name-input"]').exists()).toBe(true)
+    expect(wrapper.find('[data-testid="last-name-input"]').exists()).toBe(true)
   })
+
   it('creates a new candidate and emits close', async () => {
     const wrapper = mount(CandidateAddForm)
 
-    await wrapper.find('input#firstName').setValue('Oscar')
-    await wrapper.find('input#lastName').setValue('Roza')
+    await wrapper.find('[data-testid="first-name-input"]').setValue('Oscar')
+    await wrapper.find('[data-testid="last-name-input"]').setValue('Roza')
 
-    await wrapper.find('form').trigger('submit.prevent')
+    await wrapper.find('[data-testid="candidate-add-form"]').trigger('submit.prevent')
 
     expect(mockAddCandidates).toHaveBeenCalledWith({
       firstName: 'Oscar',

@@ -54,16 +54,23 @@ const allowDrop = (event: DragEvent) => {
 
 <template>
   <div
+    :data-testid="`vacancy-status-${props.column.name.toLowerCase()}`"
     class="scroll-custom min-w-[18.5rem] overflow-x-hidden overflow-y-auto rounded-md border border-gray-200 p-4 text-center"
     :class="background"
     @dragover="allowDrop"
     @drop="onDrop"
   >
     <div class="mb-1 h-1 w-full rounded" :class="`bg-${props.img}`" />
-    <div class="bg-gray flex items-center gap-2 p-2 text-center text-gray-800">
-      <img :src="icon" class="h-5 w-5" alt="" />
+    <div
+      :data-testid="`vacancy-status-header-${props.column.name.toLowerCase()}`"
+      class="bg-gray flex items-center gap-2 p-2 text-center text-gray-800"
+    >
+      <img :src="icon" class="h-5 w-5" :data-testid="`vacancy-status-icon-${props.img}`" alt="" />
       <h2 class="text-base font-medium">{{ column.name }}</h2>
     </div>
-    <CandidatesCard :candidates="candidatesfilter" />
+    <CandidatesCard
+      :data-testid="`vacancy-candidates-${props.column.name.toLowerCase()}`"
+      :candidates="candidatesfilter"
+    />
   </div>
 </template>

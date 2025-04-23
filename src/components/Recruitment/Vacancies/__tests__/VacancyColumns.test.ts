@@ -14,9 +14,11 @@ vi.mock('@/stores/vacancy', () => {
     })),
   }
 })
+
 describe('VacancyColumns', () => {
   it('Render same columns like Vacancies length', () => {
     const wrapper = mount(VacancyColumns)
+    expect(wrapper.find('[data-testid="vacancy-columns-container"]').exists()).toBe(true)
     const columns = wrapper.findAllComponents(VacancyColumn)
     expect(columns.length).toBe(3)
   })
