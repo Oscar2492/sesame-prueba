@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import type { Candidate } from '@/Types'
 import { dateFormater } from '../../shared/utils/dateFormater.ts'
+import { useI18n } from 'vue-i18n'
+
+const { t, locale } = useI18n()
 
 const props = defineProps<{
   candidates: Candidate[]
@@ -38,7 +41,7 @@ const handleDragStart = (event: DragEvent, candidate: Candidate) => {
       data-testid="candidate-date"
     >
       <img src="@/assets/icons/icon-clock.svg" alt="clock" data-testid="candidate-clock-icon" />
-      {{ dateFormater(candidate?.createdAt) }}
+      {{ dateFormater(candidate?.createdAt, t, locale) }}
     </div>
   </div>
 </template>

@@ -1,0 +1,48 @@
+{
+  "body": {
+    "recruitment": "Reclutamiento"
+  },
+  "sidebar": {
+    "admin": "ADMINISTRADOR",
+    "talent": "Talento"
+  },
+  "recruitment": {
+    "header": {
+      "vacancies": "Vacantes",
+      "candidates": "Candidatos",
+      "columns": {
+        "nuevo": "Nuevo",
+        "enproceso": "En proceso",
+        "seleccionado": "Seleccionado",
+        "descartado": "Descartado"
+      },
+      "candidatesTable": {
+        "name": "Nombre del candidato",
+        "creationDate": "Fecha de creación",
+        "vacancyName": "Nombre de la vacante"
+      }
+    }
+  },
+  "buttons": {
+    "addCandidate": "Añadir candidato"
+  },
+  "dates": {
+    "noDate": "Sin fecha",
+    "invalidDate": "Fecha invalida",
+    "today": "Hoy",
+    "yesterday": "Ayer",
+    "thisWeek": "Esta semana",
+    "lastWeek": "Hace una semana"
+  },
+  "shared": {
+    "search": "Buscar",
+    "accept": "Aceptar",
+    "cancel": "Cancelar",
+    "firstName": "Nombre",
+    "lastName": "Apellido",
+    "form": {
+      "namePlaceholder": "Inserta el nombre",
+      "lastNamePlaceholder": "Inserta el Apellido"
+    }
+  }
+}

@@ -2,8 +2,15 @@
 import { useCandidatesStore } from '@/stores/candidates.ts'
 import { computed } from 'vue'
 import { dateFormater } from '../../shared/utils/dateFormater.ts'
+import { useI18n } from 'vue-i18n'
 
+const { t, locale } = useI18n()
 const candidateStore = useCandidatesStore()
+const statusTranslated = (col: string | undefined) => {
+  if (!col) return '-'
+  const key = `recruitment.header.columns.${col.toLowerCase().replace(/\s+/g, '')}`
+  return t(key)
+}
 const candidates = computed(() => candidateStore.filteredCandidates)
 </script>
 
@@ -13,9 +20,15 @@ const candidates = computed(() => candidateStore.filteredCandidates)
       class="text-font-purple border-neutral bg-neutral-background grid grid-cols-[1fr_1fr_1fr] gap-4 border-b p-4 font-semibold"
       data-testid="candidates-table-header"
     >
-      <div data-testid="header-name">Nombre del candidato</div>
-      <div data-testid="header-date">Fecha de creación</div>
-      <div data-testid="header-vacancy">Nombre de la vacante</div>
+      <div data-testid="header-name">
+        {{ t('recruitment.header.candidatesTable.name') }}
+      </div>
+      <div data-testid="header-date">
+        {{ t('recruitment.header.candidatesTable.creationDate') }}
+      </div>
+      <div data-testid="header-vacancy">
+        {{ t('recruitment.header.candidatesTable.vacancyName') }}
+      </div>
     </div>
 
     <div
@@ -25,8 +38,10 @@ const candidates = computed(() => candidateStore.filteredCandidates)
       data-testid="candidate-row"
     >
       <div data-testid="candidate-name">{{ `${candidate.firstName} ${candidate.lastName}` }}</div>
-      <div data-testid="candidate-date">{{ dateFormater(candidate.createdAt) }}</div>
-      <div data-testid="candidate-vacancy">{{ candidate.status?.name || '-' }}</div>
+      <div data-testid="candidate-date">{{ dateFormater(candidate.createdAt, t, locale) }}</div>
+      <div data-testid="candidate-vacancy">
+        {{ statusTranslated(candidate.status?.name) || '-' }}
+      </div>
     </div>
 
     <div

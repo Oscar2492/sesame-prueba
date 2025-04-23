@@ -29,11 +29,11 @@ describe('VacancyColumn', () => {
     filteredCandidatesMock = candidates
     const wrapper = mount(VacancyColumn, {
       props: {
-        column: { id: 1, name: 'New' },
+        column: { id: 1, name: 'Nuevo' },
         img: 'new',
       },
     })
-    const columnContainer = wrapper.find('[data-testid="vacancy-status-new"]')
+    const columnContainer = wrapper.find('[data-testid="vacancy-status-nuevo"]')
     expect(columnContainer.classes()).toContain('bg-white')
   })
 
@@ -41,18 +41,18 @@ describe('VacancyColumn', () => {
     filteredCandidatesMock = []
     const wrapper = mount(VacancyColumn, {
       props: {
-        column: { id: 1, name: 'New' },
+        column: { id: 1, name: 'Nuevo' },
         img: 'new',
       },
     })
-    const columnContainer = wrapper.find('[data-testid="vacancy-status-new"]')
+    const columnContainer = wrapper.find('[data-testid="vacancy-status-nuevo"]')
     expect(columnContainer.classes()).toContain('bg-neutral-background')
   })
 
   it('displays the correct icon based on the "img" prop', () => {
     const wrapper = mount(VacancyColumn, {
       props: {
-        column: { id: 1, name: 'New' },
+        column: { id: 1, name: 'Nuevo' },
         img: 'new',
       },
     })
@@ -63,18 +63,18 @@ describe('VacancyColumn', () => {
   it('renders the correct column name', () => {
     const wrapper = mount(VacancyColumn, {
       props: {
-        column: { id: 1, name: 'Interview' },
-        img: 'interview',
+        column: { id: 1, name: 'Nuevo' },
+        img: 'new',
       },
     })
-    expect(wrapper.text()).toContain('Interview')
+    expect(wrapper.text()).toContain('Nuevo')
   })
 
   it('renders the correct number of candidates', () => {
     filteredCandidatesMock = candidates
     const wrapper = mount(VacancyColumn, {
       props: {
-        column: { id: 1, name: 'New' },
+        column: { id: 1, name: 'Nuevo' },
         img: 'new',
       },
     })
@@ -85,7 +85,7 @@ describe('VacancyColumn', () => {
   it('calls updateCandidate when a candidate is dropped', async () => {
     const wrapper = mount(VacancyColumn, {
       props: {
-        column: { id: '3', name: 'Hired' },
+        column: { id: '3', name: 'Nuevo' },
         img: 'hired',
       },
     })

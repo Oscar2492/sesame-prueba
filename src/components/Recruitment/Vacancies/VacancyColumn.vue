@@ -7,7 +7,9 @@ import iconInterview from '@/assets/icons/icon-interview.svg'
 import iconHired from '@/assets/icons/icon-hired.svg'
 import iconBan from '@/assets/icons/icon-ban.svg'
 import { useCandidatesStore } from '@/stores/candidates.ts'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const props = defineProps<{
   column: VacancyStatus
   img: string
@@ -46,7 +48,10 @@ const onDrop = (event: DragEvent) => {
     })
   }
 }
-
+const colTransalted = (col: string) => {
+  const key = `recruitment.header.columns.${col.toLowerCase().replace(/\s+/g, '')}`
+  return t(key)
+}
 const allowDrop = (event: DragEvent) => {
   event.preventDefault()
 }
@@ -66,11 +71,10 @@ const allowDrop = (event: DragEvent) => {
       class="bg-gray flex items-center gap-2 p-2 text-center text-gray-800"
     >
       <img :src="icon" class="h-5 w-5" :data-testid="`vacancy-status-icon-${props.img}`" alt="" />
-      <h2 class="text-base font-medium">{{ column.name }}</h2>
+      <h2 class="text-base font-medium">
+        {{ colTransalted(column.name) }}
+      </h2>
     </div>
-    <CandidatesCard
-      :data-testid="`vacancy-candidates-${props.column.name.toLowerCase()}`"
-      :candidates="candidatesfilter"
-    />
+    <CandidatesCard :candidates="candidatesfilter" />
   </div>
 </template>

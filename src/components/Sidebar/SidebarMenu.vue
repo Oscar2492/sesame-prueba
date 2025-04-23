@@ -2,6 +2,9 @@
 import SidebarSection from './SidebarSection.vue'
 import ChevronArrow from '@/components/shared/atoms/ChevronArrow.vue'
 import { ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 const isOpen = ref(true)
 
@@ -27,10 +30,12 @@ const toggleSection = () => {
         class="mb-2 flex cursor-pointer items-center justify-between rounded px-2 py-1 text-xs font-semibold text-gray-400 hover:bg-gray-100"
         data-testid="sidebar-menu-toggle"
       >
-        <span class="text-xs font-normal" data-testid="sidebar-menu-label">ADMINISTRADOR</span>
+        <span class="text-xs font-normal" data-testid="sidebar-menu-label">
+          {{ t('sidebar.admin') }}
+        </span>
         <ChevronArrow :isOpen="isOpen" color="neutral" />
       </div>
-      <SidebarSection v-if="isOpen" title="Talento" data-testid="sidebar-menu-section">
+      <SidebarSection v-if="isOpen" :title="t('sidebar.talent')" data-testid="sidebar-menu-section">
         <template #icon>
           <img src="@/assets/icons/icon-star.svg" alt="Star icon" data-testid="sidebar-menu-icon" />
         </template>

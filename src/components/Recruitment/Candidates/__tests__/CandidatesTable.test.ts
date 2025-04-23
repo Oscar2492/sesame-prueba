@@ -30,15 +30,15 @@ describe('CandidatesTable', () => {
     },
     {
       id: '2',
-      firstName: 'John',
-      lastName: 'Doe',
+      firstName: 'Beltran',
+      lastName: 'Garcia',
       createdAt: '2025-04-21T12:00:00.000Z',
       status: { name: 'In Progress' },
     },
     {
       id: '3',
-      firstName: 'Jane',
-      lastName: 'Smith',
+      firstName: 'Borja',
+      lastName: 'Fombona',
       createdAt: '2025-04-22T12:00:00.000Z',
       status: { name: 'Completed' },
     },
@@ -57,7 +57,7 @@ describe('CandidatesTable', () => {
 
       expect(wrapper.text()).toContain(candidate.status.name)
 
-      expect(dateFormater).toHaveBeenCalledWith(candidate.createdAt)
+      expect(dateFormater).toHaveBeenCalledWith(candidate.createdAt, expect.any(Function), 'es')
       expect(wrapper.text()).toContain('21/04/2025')
     })
   })

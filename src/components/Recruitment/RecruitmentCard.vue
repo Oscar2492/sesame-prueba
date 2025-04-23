@@ -6,7 +6,9 @@ import { computed, ref, watch } from 'vue'
 import { useCandidatesStore } from '@/stores/candidates.ts'
 import LabeledInput from '@/components/shared/atoms/LabeledInput.vue'
 import CandidatesTable from '@/components/Recruitment/Candidates/CandidatesTable.vue'
+import { useI18n } from 'vue-i18n'
 
+const { t } = useI18n()
 const candidateStore = useCandidatesStore()
 const filterCandidate = ref('')
 watch(filterCandidate, () => {
@@ -26,7 +28,12 @@ const isVacancySelected = computed(() => selectedTab.value === 'vacancy')
       class="my-4 flex flex-wrap items-center justify-between gap-4 px-4"
       data-testid="recruitment-controls"
     >
-      <labeled-input placeholder="Buscar" v-model="filterCandidate" height="s" width="l" />
+      <labeled-input
+        :placeholder="t('shared.search')"
+        v-model="filterCandidate"
+        height="s"
+        width="l"
+      />
       <candidates-add />
     </div>
 
