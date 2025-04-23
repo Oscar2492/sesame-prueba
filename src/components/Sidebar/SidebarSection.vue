@@ -2,6 +2,9 @@
 import { ref } from 'vue'
 import SidebarItem from '@/components/Sidebar/SidebarItem.vue'
 import ChevronArrow from '@/components/shared/atoms/ChevronArrow.vue'
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
 
 defineProps<{
   title: string
@@ -25,7 +28,7 @@ const isOpen = ref(true)
     </div>
 
     <div v-if="isOpen" class="mt-1 flex flex-col gap-1 pl-2" data-testid="sidebar-content">
-      <SidebarItem label="Reclutamiento" />
+      <SidebarItem :label="t('body.recruitment')" />
     </div>
   </div>
 </template>
