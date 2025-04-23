@@ -6,6 +6,11 @@ Prueba tecnica para Sesame de Oscar Roza Fernandez.
 
 Puedes ver la aplicación en funcionamiento aquí: [https://sesame-prueba.vercel.app/](https://sesame-prueba.vercel.app/)
 
+## 📱 Compatibilidad
+
+La aplicación es compatible con dispositivos móviles con un diseño responsive que se adapta a diferentes tamaños de
+pantalla, garantizando su uso tanto en dispositivos de escritorio como en tablets y smartphones.
+
 ## 🚀 Tecnologías Principales
 
 - Vue 3.5.13
@@ -45,7 +50,7 @@ Antes de comenzar, asegúrate de tener instalado en tu máquina:
 ### 3. Clonar el repositorio de GitHub
 
 ```bash
-  git clone https://github.com/usuario/repositorio.git
+  git clone https://github.com/Oscar2492/sesame-prueba.git
 ```
 
 > 🔁 Reemplaza la URL por la del repositorio real si es diferente.
