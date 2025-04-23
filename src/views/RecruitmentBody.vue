@@ -4,9 +4,12 @@ import SidebarMenu from '@/components/Sidebar/SidebarMenu.vue'
 import SlideTransition from '@/components/shared/transitions/SlideTransition.vue'
 import { useIsMobile } from '@/utils/isMobile'
 import { computed, ref } from 'vue'
+import { useI18n } from 'vue-i18n'
+import LangSelector from '@/components/shared/molecules/LangSelector.vue'
 
 const { isMobile } = useIsMobile()
 const isSidebarOpen = ref(false)
+const { t } = useI18n()
 
 const sidebarClasses = computed(() => ({
   'fixed inset-0 z-50 flex flex-col items-center bg-white pt-6':
@@ -43,17 +46,20 @@ const toggleSidebar = () => {
         class="cursor-pointer rounded-r-sm bg-white p-1"
       />
     </div>
-
     <main class="ml-4 flex-1 overflow-x-hidden py-3">
       <div class="mb-6 flex items-center justify-between">
-        <h1 class="text-3xl font-bold">Reclutamiento</h1>
-        <img
-          v-if="!isMobile && !isSidebarOpen"
-          src="@/assets/images/shurperro.png"
-          alt="shurperro"
-          class="h-10 w-10"
-        />
+        <h1 class="text-3xl font-bold">{{ t('body.recruitment') }}</h1>
+        <div class="mr-2 flex flex-col items-center justify-center gap-2">
+          <img
+            v-if="!isMobile && !isSidebarOpen"
+            src="@/assets/images/shurperro.png"
+            alt="shurperro"
+            class="h-10 w-10"
+          />
+          <LangSelector />
+        </div>
       </div>
+
       <RecruitmentCard />
     </main>
   </div>

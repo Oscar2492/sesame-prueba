@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { useI18n } from 'vue-i18n'
+
+const { t } = useI18n()
+
 const props = defineProps({
   selectedTab: {
     type: String,
@@ -27,7 +31,7 @@ function selectTab(tab: 'vacancy' | 'candidate') {
       ]"
       @click="selectTab('vacancy')"
     >
-      Vacantes
+      {{ t('recruitment.header.vacancies') }}
     </div>
     <div
       data-test-id="candidate-tab"
@@ -39,7 +43,7 @@ function selectTab(tab: 'vacancy' | 'candidate') {
       ]"
       @click="selectTab('candidate')"
     >
-      Candidatos
+      {{ t('recruitment.header.candidates') }}
     </div>
   </div>
 </template>
