@@ -134,3 +134,5 @@ Puedes ejecutar los tests del proyecto con el siguiente comando:
   La idea sería que, desde cada tarjeta de candidato, al hacer clic en el icono de los tres puntos verticales, se
   desplegara un menú contextual con la opción **"Editar candidato"**, la cual redirigiría a un formulario dedicado para
   dicha edición.
+- Otra mejora pendiente es implementar el uso del estado `isLoading` que ya existe en los stores para mostrar un
+  indicador de carga (spinner) durante las llamadas a la API de datos.
