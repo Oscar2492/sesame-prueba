@@ -1,10 +1,10 @@
 import { describe, expect, it, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
-import CandidateAddForm from '../../../src/components/Recruitment/Candidates/CandidateAddForm.vue'
-import LabeledButton from '../../../src/components/shared/atoms/LabeledButton.vue'
+import LabeledButton from '../../../shared/atoms/LabeledButton.vue'
+import CandidateAddForm from '../CandidateAddForm.vue'
 
 const mockAddCandidates = vi.fn()
-vi.mock('../../../src/stores/Candidates', () => {
+vi.mock('../../../../stores/candidates', () => {
   return {
     useCandidatesStore: vi.fn(() => ({
       addCandidates: mockAddCandidates,

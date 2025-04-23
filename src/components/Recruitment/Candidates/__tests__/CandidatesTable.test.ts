@@ -1,7 +1,7 @@
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import CandidatesTable from '../../../src/components/Recruitment/Candidates/CandidatesTable.vue'
+import CandidatesTable from '../CandidatesTable.vue'
 import { mount } from '@vue/test-utils'
-import { dateFormater } from '../../../src/components/shared/utils/dateFormater'
+import { dateFormater } from '../../../shared/utils/dateFormater'
 
 let filteredCandidatesMock = []
 

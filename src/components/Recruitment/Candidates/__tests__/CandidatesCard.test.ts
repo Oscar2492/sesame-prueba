@@ -1,5 +1,5 @@
 import { describe, expect, it, vi } from 'vitest'
-import CandidatesCard from '../../../src/components/Recruitment/Candidates/CandidatesCard.vue'
+import CandidatesCard from '../CandidatesCard.vue'
 import { mount } from '@vue/test-utils'
 import { fireEvent } from '@testing-library/vue'
 

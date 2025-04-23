@@ -1,13 +1,13 @@
 import { describe, expect, it, vi } from 'vitest'
 import { mount } from '@vue/test-utils'
-import VacancyColumn from '../../../src/components/Recruitment/Vacancies/VacancyColumn.vue'
+import VacancyColumn from '../VacancyColumn.vue'
 
 vi.mock('@/assets/icons/icon-new.svg', () => ({
   default: '@/assets/icons/icon-new.svg',
 }))
 
 const mockUpdateCandidate = vi.fn()
-vi.mock('../../../src/stores/Candidates', () => {
+vi.mock('@/stores/Candidates', () => {
   return {
     useCandidatesStore: vi.fn(() => ({
       filteredCandidates: [

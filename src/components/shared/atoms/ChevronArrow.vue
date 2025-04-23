@@ -14,6 +14,7 @@ defineProps<{
     viewBox="0 0 16 16"
     fill="none"
     xmlns="http://www.w3.org/2000/svg"
+    data-test-id="arrow-svg"
   >
     <path
       d="M12 10L8 6L4 10"

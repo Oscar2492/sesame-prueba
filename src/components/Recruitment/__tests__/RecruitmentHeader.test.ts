@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import RecruitmentHeader from '../../../src/components/Recruitment/RecruitmentHeader.vue'
+import RecruitmentHeader from '../RecruitmentHeader.vue'
 import { describe, expect, it } from 'vitest'
 
 describe('RecruitmentHeader', () => {
@@ -8,10 +8,13 @@ describe('RecruitmentHeader', () => {
       props: { selectedTab: 'vacancy' },
     })
 
-    expect(wrapper.text()).toContain('Vacantes')
-    expect(wrapper.text()).toContain('Candidatos')
+    const vacancyTab = wrapper.find('[data-test-id="vacancy-tab"]')
+    const candidateTab = wrapper.find('[data-test-id="candidate-tab"]')
 
-    await wrapper.findAll('div.cursor-pointer')[1].trigger('click')
+    expect(vacancyTab.text()).toBe('Vacantes')
+    expect(candidateTab.text()).toBe('Candidatos')
+
+    await candidateTab.trigger('click')
     expect(wrapper.emitted('update:selectedTab')?.[0]).toEqual(['candidate'])
   })
 })

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import ChevronArrow from '../../../../src/components/shared/atoms/ChevronArrow.vue'
+import ChevronArrow from '../ChevronArrow.vue'
 import { mount } from '@vue/test-utils'
 
 describe('ChevronArrow', () => {
@@ -10,7 +10,7 @@ describe('ChevronArrow', () => {
         color: 'neutral',
       },
     })
-    expect(wrapper.find('svg').exists()).toBe(true)
+    expect(wrapper.find('[data-test-id="arrow-svg"]').exists()).toBe(true)
   })
   it('Props should work fine', () => {
     const wrapper = mount(ChevronArrow, {
@@ -19,7 +19,9 @@ describe('ChevronArrow', () => {
         color: 'purple',
       },
     })
-    expect(wrapper.find('svg').classes()).toContain('color-purple')
-    expect(wrapper.find('svg').classes()).toContain('rotate-180')
+    const arrow = wrapper.find('[data-test-id="arrow-svg"]')
+
+    expect(arrow.classes()).toContain('color-purple')
+    expect(arrow.classes()).toContain('rotate-180')
   })
 })

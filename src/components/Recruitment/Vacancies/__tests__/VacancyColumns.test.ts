@@ -1,9 +1,9 @@
 import { describe, expect, it, vi } from 'vitest'
-import VacancyColumns from '../../../src/components/Recruitment/Vacancies/VacancyColumns.vue'
+import VacancyColumns from '../VacancyColumns.vue'
 import { mount } from '@vue/test-utils'
-import VacancyColumn from '../../../src/components/Recruitment/Vacancies/VacancyColumn.vue'
+import VacancyColumn from '../VacancyColumn.vue'
 
-vi.mock('../../../src/stores/vacancy', () => {
+vi.mock('@/stores/vacancy', () => {
   return {
     useVacancyStore: vi.fn(() => ({
       vacancyStatus: [

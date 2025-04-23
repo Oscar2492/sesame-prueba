@@ -1,8 +1,8 @@
 import { describe, expect, it } from 'vitest'
 import { mount } from '@vue/test-utils'
-import CandidatesAdd from '../../../src/components/Recruitment/Candidates/CandidatesAdd.vue'
-import LabeledButton from '../../../src/components/shared/atoms/LabeledButton.vue'
-import CandidateAddForm from '../../../src/components/Recruitment/Candidates/CandidateAddForm.vue'
+import CandidatesAdd from '../CandidatesAdd.vue'
+import LabeledButton from '../../../shared/atoms/LabeledButton.vue'
+import CandidateAddForm from '../CandidateAddForm.vue'
 import { nextTick } from 'vue'
 
 describe('CandidatesAdd', () => {
